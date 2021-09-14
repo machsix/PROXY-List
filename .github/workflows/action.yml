@@ -2,7 +2,7 @@ name: PROXY Updater
 
 on:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '0 1/12 * * *'
 
 jobs:
   build:
@@ -17,8 +17,15 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install requests
-    - run: curl -s -L ${{secrets.UPDATER}} -o updater.py
-    - run: python updater.py
+    - name: Update file
+      env:
+        LINK: ${{ secrets.LINK }}
+      run: |
+        curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt -o socks5.txt
+        curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt -o socks4.txt
+        curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt -o http.txt
+        curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/README.md -o README.md
+        python check.py
     - name: Commit files
       run: |
         git config --local user.email ${{ secrets.GIT_EMAIL }}
