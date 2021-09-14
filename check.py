@@ -2,6 +2,7 @@
 import requests
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import json
 
 DEFAULT_HEADER = {
     'authority': 'www.jpxgmn.top',
@@ -59,5 +60,4 @@ if (__name__ == '__main__'):
                 proxyFail.append(p)
 
     with open('proxy.yaml', 'w') as f:
-        for i in proxyPass:
-            f.write(f'- {i}')
+        json.dump(proxyPass, f, indent=2)
