@@ -1,8 +1,12 @@
 name: PROXY Updater
 
 on:
+  push:
+    paths-ignore:
+      - '**.txt'
+      - '**.yaml'
   schedule:
-    - cron: '0 1/12 * * *'
+    - cron: '0 9 * * *'
 
 jobs:
   build:
@@ -20,6 +24,7 @@ jobs:
     - name: Update file
       env:
         LINK: ${{ secrets.LINK }}
+        PYTHONUNBUFFERED: 1
       run: |
         curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt -o socks5.txt
         curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt -o socks4.txt
@@ -30,6 +35,7 @@ jobs:
       run: |
         git config --local user.email ${{ secrets.GIT_EMAIL }}
         git config --local user.name ${{ secrets.GIT_NAME }}
+        git add -A
         git commit -am "Updated Proxies"
     - name: Push changes
       uses: ad-m/github-push-action@master
