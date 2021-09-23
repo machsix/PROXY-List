@@ -29,11 +29,12 @@ def test_proxy(p, testLink, timeout=20):
             'https': p
         })
         r = s.get(testLink, timeout=timeout)
+        time_cost = r.elapsed.total_seconds()
         if r.status_code != 200:
-            return False
-        return True
+            return -1
+        return time_cost
     except:
-        return False
+        return -1
 
 
 if (__name__ == '__main__'):
@@ -46,18 +47,22 @@ if (__name__ == '__main__'):
 
     testLink = os.environ['LINK']
     proxyPass = []
+    proxyPassTime = []
     proxyFail = []
     ntest = 20
     with ThreadPoolExecutor(max_workers=100) as executor:
         futures = {executor.submit(test_proxy, p, testLink, timeout=15): p for p in proxy}
         for f in as_completed(futures):
             p = futures[f]
-            if f.result():
-                print(f'Test: {p}   Success')
+            if f.result() > 0:
+                print(f'Test: {p}   Success, Time cost {f.result()}s')
                 proxyPass.append(p)
+                proxyPassTime.append(f.result())
             else:
                 #  print(f'Test: {p}   Fail')
                 proxyFail.append(p)
-
+    
+    index = sorted(range(len(proxyPassTime)), key=lambda k: proxyPassTime[k])
+    proxyPass = [proxyPass[i] for i in index]
     with open('proxy.yaml', 'w') as f:
         json.dump(proxyPass, f, indent=2)
