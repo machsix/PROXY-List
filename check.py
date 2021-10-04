@@ -28,7 +28,7 @@ def test_proxy(p, testLink, timeout=20):
             'http': p,
             'https': p
         })
-        r = s.get(testLink, timeout=timeout)
+        r = s.get(testLink, timeout=timeout, verify=False)
         time_cost = r.elapsed.total_seconds()
         if r.status_code != 200:
             return -1
