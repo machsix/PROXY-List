@@ -2,8 +2,10 @@
 import requests
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import json
 
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning) 
 DEFAULT_HEADER = {
     'authority': 'www.jpxgmn.top',
     'pragma': 'no-cache',
