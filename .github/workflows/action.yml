@@ -24,6 +24,7 @@ jobs:
     - name: Update file
       env:
         LINK: ${{ secrets.LINK }}
+        KEYWORD: ${{ secrets.KEYWORD }}
         PYTHONUNBUFFERED: 1
       run: |
         curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt -o socks5.txt

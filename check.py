@@ -4,8 +4,9 @@ import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import json
+import urllib.parse
 
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning) 
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 DEFAULT_HEADER = {
     'authority': 'www.jpxgmn.top',
     'pragma': 'no-cache',
@@ -22,7 +23,7 @@ DEFAULT_HEADER = {
 }
 
 
-def test_proxy(p, testLink, timeout=20):
+def test_proxy(p, testLink, testKeyword, timeout=20):
     try:
         s = requests.Session()
         s.headers.update(DEFAULT_HEADER)
@@ -31,8 +32,9 @@ def test_proxy(p, testLink, timeout=20):
             'https': p
         })
         r = s.get(testLink, timeout=timeout, verify=False)
+        r.encoding = 'utf-8'
         time_cost = r.elapsed.total_seconds()
-        if r.status_code != 200:
+        if r.status_code != 200 or testKeyword not in r.text:
             return -1
         return time_cost
     except:
@@ -48,12 +50,13 @@ if (__name__ == '__main__'):
         proxy.add(f'http://{i}')
 
     testLink = os.environ['LINK']
+    testKeyword = urllib.parse.unquote_plus(os.environ['KEYWORD'])
     proxyPass = []
     proxyPassTime = []
     proxyFail = []
     ntest = 20
     with ThreadPoolExecutor(max_workers=100) as executor:
-        futures = {executor.submit(test_proxy, p, testLink, timeout=15): p for p in proxy}
+        futures = {executor.submit(test_proxy, p, testLink, testKeyword, timeout=15): p for p in proxy}
         for f in as_completed(futures):
             p = futures[f]
             if f.result() > 0:
@@ -63,7 +66,7 @@ if (__name__ == '__main__'):
             else:
                 #  print(f'Test: {p}   Fail')
                 proxyFail.append(p)
-    
+
     index = sorted(range(len(proxyPassTime)), key=lambda k: proxyPassTime[k])
     proxyPass = [proxyPass[i] for i in index]
     with open('proxy.yaml', 'w') as f:
