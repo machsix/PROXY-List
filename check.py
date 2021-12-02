@@ -11,14 +11,8 @@ DEFAULT_HEADER = {
     'authority': 'www.jpxgmn.net',
     'pragma': 'no-cache',
     'cache-control': 'no-cache',
-    # 'sec-ch-ua': '"Chromium";v="92", " Not A;Brand";v="99", "Microsoft Edge";v="92"',
-    # 'dnt': '1',
-    # 'sec-ch-ua-mobile': '?0',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 Edg/92.0.902.67',
     'accept': 'image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-    # 'sec-fetch-site': 'same-origin',
-    # 'sec-fetch-mode': 'no-cors',
-    # 'sec-fetch-dest': 'image',
     'accept-language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
 }
 
