@@ -8,7 +8,7 @@ import urllib.parse
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 DEFAULT_HEADER = {
-    'authority': 'www.jpxgmn.top',
+    'authority': 'www.jpxgmn.net',
     'pragma': 'no-cache',
     'cache-control': 'no-cache',
     # 'sec-ch-ua': '"Chromium";v="92", " Not A;Brand";v="99", "Microsoft Edge";v="92"',
