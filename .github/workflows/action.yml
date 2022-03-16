@@ -6,7 +6,7 @@ on:
       - '**.txt'
       - '**.yaml'
   schedule:
-    - cron: '0 11/4 * * *'
+    - cron: '0 12/4 * * *'
   workflow_dispatch:
 
 jobs:
