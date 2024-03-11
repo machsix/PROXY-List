@@ -1,34 +1,38 @@
 
 # PROXY-LIST
 
-A list of Free, Scrapped Public Proxies. UPDATED REGULARLY !!!  
+This list gets free public proxies that are updated from time to time.  
+I collected them from the Internet for easy access. Remember, I'm not in charge of these proxies.
 
-Last Updated: `Sunday 10-03-2024 18:10:51 UTC`  
-Total Proxies: `14752`  
+Last Updated: `Monday 11-03-2024 09:11:25 UTC`  
+Total Proxies: `13734`  
 
 ## DOWNLOAD
 
-### For SOCKS5
+- **SOCKS5**
 
-```curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt -o socks5.txt```
+```bash
+https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt
+```
 
-### For SOCKS4
+- **SOCKS4**
 
-```curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt -o socks4.txt```
+```bash
+https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks4.txt
+```
 
-### For HTTP(S)
+- **HTTP**
 
-```curl https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt -o http.txt```
+```bash
+https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/http.txt
+```
 
 ## NOTES
 
-It is Only For Educational Purposes. Neither I Say Nor I Promote To Do Anything Illegal.
+It is Only For Educational Purposes. Neither I Say Nor I Promote To Do Anything Illegal.  
+Developer Please Give Credits, Stars, And Follow If You Use My SOCKS List.  
 
-Please Give Credits, Stars, And Follow If You Use My SOCKS List.  
+You can Also Use My Tool [![SOCKER](https://img.shields.io/badge/TheSpeedX-SOCKER-red)](https://github.com/TheSpeedX/socker) To check for working SOCKS PROXY.
 
-You can Also Use My Tool [SOCKER](https://github.com/TheSpeedX/socker) To check for working SOCKS PROXY.
-
-## CONTACT
-
- For Any Queries:  
-        Ping Me : [Telegram](http://t.me/the_space_bar)
+---
+Made with 🐍 by [![GitHub](https://img.shields.io/badge/GitHub-TheSpeedX-red)](https://github.com/TheSpeedX)
