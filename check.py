@@ -7,8 +7,9 @@ import json
 import urllib.parse
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
+DOMAIN = "www.plmn5.com"
 DEFAULT_HEADER = {
-    'authority': 'www.jpmn5.com',
     'pragma': 'no-cache',
     'cache-control': 'no-cache',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/538.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/538.36 Edg/92.0.902.67',
@@ -36,6 +37,9 @@ def test_proxy(p, testLink, testKeyword, timeout=20):
 
 
 if (__name__ == '__main__'):
+    if os.path.isfile("domain.txt"):
+          with open("domain.txt", "r") as f:
+              DOMAIN = f.readline().split()[0]
     proxy = set()
     with open('http.txt', 'r') as f:
         data = f.read().split()
@@ -44,6 +48,13 @@ if (__name__ == '__main__'):
         proxy.add(f'http://{i}')
 
     testLink = os.environ['LINK']
+    testLink = urllib.parse.urlparse(testLink)._replace(netloc=DOMAIN).geturl()
+    req = requests.get(testLink)
+    testLink = req.url
+    DOMAIN = urllib.parse.urlparse(testLink).netloc
+    with open('domain.txt', 'w') as f:
+          f.write(DOMAIN + '\n')
+
     testKeyword = urllib.parse.unquote_plus(os.environ['KEYWORD'])
     proxyPass = []
     proxyPassTime = []
