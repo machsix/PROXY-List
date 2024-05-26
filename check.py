@@ -54,6 +54,16 @@ if (__name__ == '__main__'):
     DOMAIN = urllib.parse.urlparse(testLink).netloc
     with open('domain.txt', 'w') as f:
           f.write(DOMAIN + '\n')
+    with open('rewrite.plugin', 'w') as f:
+          f.write(f'''#!name = rewrite
+#!desc = rewrite url
+#!icon = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Bypass.png
+#!author = machsix
+[URL Rewrite]
+^https?:\/\/(www\.)?jpxgmn\.com header https://{DOMAIN}
+''')
+
+
 
     testKeyword = urllib.parse.unquote_plus(os.environ['KEYWORD'])
     proxyPass = []
