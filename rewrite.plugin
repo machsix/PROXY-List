@@ -3,4 +3,4 @@
 #!icon = https://github.com/Koolson/Qure/blob/master/IconSet/Color/Bypass.png
 #!author = machsix
 [URL Rewrite]
-^https?:\/\/(www\.)?jpxgmn\.com header https://www.321781.xyz
+^https?:\/\/(www\.)?jpxgmn\.com header https://www.xgmn5.top
